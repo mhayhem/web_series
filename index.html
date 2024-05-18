@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Series</title>
+    <link rel="icon" href="./img/tvIcono.png">
+</head>
+<body>
+    <header>
+        <section id="initial">
+            <div> <!-- head of page -->
+                <h1>Tus Series Favoritos</h1>
+            </div>
+        </section>
+    </header>
+    <main>
+        <section id="user"> <!-- user info -->
+            <div>
+                <h3>Datos Usuario</h3>
+            </div>
+            <form action="#" id="data">
+                <div>
+                    <label for="nick">Nombre *</label>
+                    <input type="text" name="nick" id="nick" minlength="2" maxlength="20">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" minlength="5" maxlength="32">
+                    <label for="age">Edad *</label>
+                    <input type="text" name="age" id="age">
+                    <p>* campo obligatorio</p>
+                    <p id="empty"></p>
+                </div>
+                <div>
+                    <h4>selecciona tres de ellas</h4>
+                </div>  
+                <div id="popular"> <!-- first survey -->
+                <label for="series">Series Populares</label>
+                <select name="series" id="series">
+                    <option value="0" selected> -- Selecciona una opción -- </option>
+                    <option value="1">Breaking Bad</option>
+                    <option value="2">Game of thrones</option>
+                    <option value="3">The Soprano</option>
+                    <option value="4">Peaky Blinders</option>
+                    <option value="5">Chernobyl</option>
+                </select>
+                </div>
+                <div id="animation"> <!-- second survey -->
+                    <label for="anime">Series Animadas</label>
+                    <select name="anime" id="anime">
+                        <option value="0"> -- Selecciona una opción -- </option> 
+                        <option value="1">The Simpson</option>
+                        <option value="2">Rick And Morty</option>
+                        <option value="3">Futurama</option>
+                        <option value="4">Death Note</option>
+                        <option value="5">Kimetsu no Yaiba</option>
+                    </select>
+                </div>
+                <div id="family"> <!-- third survey -->
+                    <label for="sitcom">Sitcom</label>
+                    <select name="sitcom" id="sitcom">
+                        <option value="0" selected> -- Selecciona una opción -- </option>
+                        <option value="1">The Big Bang Theory</option>
+                        <option value="2">Moderm Family</option>
+                        <option value="3">Brooklyn 99</option>
+                        <option value="4">How I Meet Your Mother</option>
+                        <option value="5">My Name Is Earl</option>
+                    </select>
+                    <input type="submit" name="submit" id="submit" value="Enviar">
+                    <p id="noValue"></p>
+                </div>
+            </form>
+        </section>
+    </main> 
+    <footer> <!-- end of page -->
+        <section>
+            <div>
+                <h4>Make with love &#x1F495</h4>
+            </div>
+        </section>
+    </footer>
+    <script src="./js/storage.js"></script>
+    <script src="./js/app.js"></script>
+</body>
+</html>
