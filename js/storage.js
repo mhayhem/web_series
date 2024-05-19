@@ -1,6 +1,6 @@
 // storage variables
 
-function userInfo (listSeries) {
+function userInfo (nick, email, age, seriesT, animeT, sitcomT) {
     sessionStorage.setItem('nick', nick.value);
     sessionStorage.setItem('email', email.value);
     sessionStorage.setItem('edad', age.value);
@@ -18,4 +18,3 @@ function showInfo() {
     let sitcom = sessionStorage.getItem('sitcom');
 }
 
-console.log(listSeries);

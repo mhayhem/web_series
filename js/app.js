@@ -8,31 +8,11 @@ const email = document.getElementById('email');
 const age = document.getElementById('age');
 const empty = document.getElementById('empty');
 const noValue = document.getElementById('noValue');
+const user_data = document.getElementById('user_data');
 
 const series = document.getElementById('series');
 const anime = document.getElementById('anime');
 const sitcom = document.getElementById('sitcom');
-
-// catch select-option index
-
-const seriesIndex = series.selectedIndex;
-const animeIndex = anime.selectedIndex;
-const sitcomIndex = sitcom.selectedIndex;
-
-// catch option text
-
-const seriesT = series.options[seriesIndex].text;
-const animeT = anime.options[animeIndex].text;
-const sitcomT = sitcom.options[sitcomIndex].text;
-
-console.log(seriesT, animeT, sitcomT);
-
-// group inputs
-
-const listSeries = []
-
-listSeries.push(nick, email, age, seriesT, animeT, sitcomT);
-
 
 
 // event litsener
@@ -42,6 +22,7 @@ data.addEventListener('submit', checkForm, );
 // functions
 
 function checkForm(event) {
+    // check form
     if (nick.value.length == '0') {
         event.preventDefault();
         empty.innerText='Necesita rellenar el campo nombre';
@@ -75,9 +56,32 @@ function checkForm(event) {
         noValue.innerText='Debe seleccionar una opción valida en sitcom';
         return false;
     }
-    userInfo(listSeries);
-    return true
+    if (age.value < 0 || age.value > 99) {
+        event.preventDefault();
+        empty.innerText='La edad ha de estar dentro del rango de 0 - 99';
+        return false
+    }
+    // catch text of options
 
+    let seriesIndex = series.selectedIndex;
+    let animeIndex = anime.selectedIndex;
+    let sitcomIndex = sitcom.selectedIndex;
+
+
+
+    let seriesT = series.options[seriesIndex].text;
+    let animeT = anime.options[animeIndex].text;
+    let sitcomT = sitcom.options[sitcomIndex].text;
+
+    // show series catched
+    event.preventDefault();
+    user_data.innerText=`Series populares: ${seriesT}, animadas: ${animeT} y sitcom: ${sitcomT}`;
+
+    // send user info
+    userInfo(nick, email, age, seriesT, animeT, sitcomT);
+    return true
 }
+
+
 
 
