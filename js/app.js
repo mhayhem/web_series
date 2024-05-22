@@ -74,27 +74,17 @@ function checkForm(event) {
     // redirect to registro.html
     window.location.href='registro.html';
 
-   
+   output.innerHTML=`
+   <p>Serie Popular: ${seriesT}</p>
+   <p>Serie animada: ${animeT}</p>
+   <p>Sitcom: ${sitcomT}</p>
+   `
 
     
     return true
 }
 
-function displayUserInfo () {
-    if (checkUserInfo()) {
-        const userInfo = getUserInfo();
-        output.innerHTML=`
-        <p>Nombre: ${userInfo.nick}</p>
-        <p>Email: ${userInfo.email}</p>
-        <p>Edad: ${userInfo.age}</p>
-        <p>Serie popular: ${userInfo.series}</p>
-        <p>Serie animada: ${userInfo.anime}</p>
-        <p>Sitcom: ${sitcom}</p>`
-    }
-    else {
-        window.location.href='index.html';
-    }
-}
+
 
 
 

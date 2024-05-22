@@ -10,4 +10,3 @@ output.innerText='hola';
 
 // show info and choosen 
 
-displayUserInfo();
