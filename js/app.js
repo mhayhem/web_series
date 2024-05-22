@@ -9,78 +9,105 @@ const age = document.getElementById('age');
 const empty = document.getElementById('empty');
 const noValue = document.getElementById('noValue');
 const user_data = document.getElementById('user_data');
+const output = document.getElementById('output');
 
 const series = document.getElementById('series');
 const anime = document.getElementById('anime');
 const sitcom = document.getElementById('sitcom');
 
 
+
+
 // event litsener
 
-data.addEventListener('submit', checkForm, );
+data.addEventListener('submit', checkForm);
+
+// check error in registro.html
+if (sessionStorage.getItem('empty') != null) {
+    empty.innerText=sessionStorage.getItem('empty');
+    sessionStorage.removeItem('empty');
+}
 
 // functions
 
 function checkForm(event) {
-    // check form
-    if (nick.value.length == '0') {
-        event.preventDefault();
-        empty.innerText='Necesita rellenar el campo nombre';
-        nick.focus();
-        return false;
+    event.preventDefault();
+    // validations
+    const validations = [
+        {condition: nick.value.length == 0, message: 'Necesita rellenar el campo nombre', focusElement: nick},
+        {condition: age.value.match(/(?<!\S)[a-zA-Z]/), message: 'El campo edad solo puede ser un numero', focusElement: age},
+        {condition: age.value.length == 0, message: 'Necesita rellenar el campo edad', focusElement: age},
+        {condition:  age.value < 0 || age.value > 99, message: 'La edad debe estar compendida en un rango de 0-99', focusElement: age},
+        {condition: series.value == 0, message: 'Debe seleccionar una opción valida en series populares', focusElement: series},
+        {condition: anime.value == 0, message: 'Debe seleccionar una opción valida en series animadas', focusElement: anime},
+        {condition: sitcom.value == 0, message: 'Debe seleccionar una opción valida en sitcom', focusElement: sitcom},
+    ];
+    for (const {condition, message, focusElement} of validations) {
+        if (condition) {
+            event.preventDefault();
+            if (focusElement === series || focusElement === anime || focusElement === sitcom) {
+                noValue.innerText=message;
+            }
+            else {
+                empty.innerText=message;
+            }
+            focusElement.focus();
+            return false;
+        }
     }
-    if (age.value.match(/(?<!\S)[a-zA-Z]/)) {
-        event.preventDefault();
-        empty.innerText='El campo edad solo puede ser un numero';
-        age.focus();
-        return false;
-    }
-    if (age.value.length == '0') {
-        event.preventDefault();
-        empty.innerText='Necesita rellenar el campo edad';
-        age.focus();
-        return false;
-    }
-    if (series.value == '0') {
-        event.preventDefault();
-        noValue.innerText='Debe seleccionar una opción valida en series populares';
-        return false;
-    }
-    if (anime.value == '0') {
-        event.preventDefault();
-        noValue.innerText='Debe seleccionar una opción valida en series animadas';
-        return false;
-    }
-    if (sitcom.value == '0') {
-        event.preventDefault();
-        noValue.innerText='Debe seleccionar una opción valida en sitcom';
-        return false;
-    }
-    if (age.value < 0 || age.value > 99) {
-        event.preventDefault();
-        empty.innerText='La edad ha de estar dentro del rango de 0 - 99';
-        return false
-    }
+
     // catch text of options
 
-    let seriesIndex = series.selectedIndex;
-    let animeIndex = anime.selectedIndex;
-    let sitcomIndex = sitcom.selectedIndex;
+    
 
 
 
-    let seriesT = series.options[seriesIndex].text;
-    let animeT = anime.options[animeIndex].text;
-    let sitcomT = sitcom.options[sitcomIndex].text;
+    let seriesT = series.options[series.selectedIndex].text;
+    let animeT = anime.options[anime.selectedIndex].text;
+    let sitcomT = sitcom.options[sitcom.selectedIndex].text;
 
-    // show series catched
-    event.preventDefault();
-    user_data.innerText=`Series populares: ${seriesT}, animadas: ${animeT} y sitcom: ${sitcomT}`;
+
 
     // send user info
     userInfo(nick, email, age, seriesT, animeT, sitcomT);
+
+    // redirect to registro.html
+    window.location.href='registro.html';
+
+   
+
+    
     return true
 }
+
+function displayUserInfo () {
+    if (checkUserInfo()) {
+        const userInfo = getUserInfo();
+        output.innerHTML=`
+        <p>Nombre: ${userInfo.nick}</p>
+        <p>Email: ${userInfo.email}</p>
+        <p>Edad: ${userInfo.age}</p>
+        <p>Serie popular: ${userInfo.series}</p>
+        <p>Serie animada: ${userInfo.anime}</p>
+        <p>Sitcom: ${sitcom}</p>`
+    }
+    else {
+        window.location.href='index.html';
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
