@@ -6,7 +6,4 @@ getUserInfo();
 
 if (!checkUserInfo()) location='index.html';
 
-output.innerText='hola';
-
-// show info and choosen 
 
