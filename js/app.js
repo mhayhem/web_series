@@ -8,8 +8,9 @@ const email = document.getElementById('email');
 const age = document.getElementById('age');
 const empty = document.getElementById('empty');
 const noValue = document.getElementById('noValue');
-const user_data = document.getElementById('user_data');
-const output = document.getElementById('output');
+
+
+
 
 const series = document.getElementById('series');
 const anime = document.getElementById('anime');
@@ -70,35 +71,14 @@ function checkForm(event) {
 
     // send user info
     userInfo(nick, email, age, seriesT, animeT, sitcomT);
+    storageHistoric(nick, email, age, seriesT, animeT, sitcomT);
 
-    // redirect to registro.html
+    //redirect to other html
     window.location.href='registro.html';
 
-   output.innerHTML=`
-   <p>Serie Popular: ${seriesT}</p>
-   <p>Serie animada: ${animeT}</p>
-   <p>Sitcom: ${sitcomT}</p>
-   `
 
     
-    return true
+    return seriesT, animeT, sitcomT;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

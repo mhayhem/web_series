@@ -1,4 +1,7 @@
 // storage variables
+let seriesT;
+let animeT;
+let sitcomT;
 
 function userInfo (nick, email, age, seriesT, animeT, sitcomT) {
     sessionStorage.setItem('nick', nick.value);
@@ -17,7 +20,6 @@ function getUserInfo() {
     series = sessionStorage.getItem('series');
     anime = sessionStorage.getItem('anime');
     sitcom = sessionStorage.getItem('sitcom');
-
 }
 
 function checkUserInfo () {
@@ -27,4 +29,30 @@ function checkUserInfo () {
         }
         return true
 }
+
+// local storage
+
+function storageHistoric (nick, email, age, seriesT, animeT, sitcomT) {
+    let historicUser = localStorage.getItem('historic');
+    let historic;
+    if (historicUser == null) {
+        historic = [];
+    }
+    else {
+        historic = JSON.parse(historicUser);
+    }
+    let userInfo = {
+        user: nick.value,
+        email: email.value,
+        age: age.value,
+        serie1: seriesT,
+        series2: animeT,
+        serie3: sitcomT,
+        date: Date.now()
+    }
+    historic.push(userInfo);
+    localStorage.setItem('historic', JSON.stringify(historic));
+    
+}
+
 
