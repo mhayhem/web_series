@@ -20,6 +20,7 @@ function getUserInfo() {
     series = sessionStorage.getItem('series');
     anime = sessionStorage.getItem('anime');
     sitcom = sessionStorage.getItem('sitcom');
+    
 }
 
 function checkUserInfo () {
@@ -46,13 +47,41 @@ function storageHistoric (nick, email, age, seriesT, animeT, sitcomT) {
         email: email.value,
         age: age.value,
         serie1: seriesT,
-        series2: animeT,
+        serie2: animeT,
         serie3: sitcomT,
         date: Date.now()
     }
     historic.push(userInfo);
     localStorage.setItem('historic', JSON.stringify(historic));
-    
+    sum (historic);
 }
 
+function sum (historic) {
+    let serieCounts = {};
+    let animeCounts = {};
+    let sitcomCounts = {};
 
+    historic.array.forEach(user => {
+        if (serieCounts[user.serie1]) {
+            serieCounts[user.serie1]++;
+        }
+        else {
+            serieCounts[user.serie1] = 1;
+        }
+
+        if (animeCounts[user.serie2]) {
+            animeCounts[user.serie2]++;
+        }
+        else {
+            animeCounts[user.serie2] = 1;
+        }
+
+        if (sitcomCounts[user.serie3]) {
+            sitcomCounts[user.serie3]++;
+        }
+        else {
+            sitcomCounts[user.serie3] = 1;
+        }
+    });
+
+}

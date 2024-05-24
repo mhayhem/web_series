@@ -75,10 +75,10 @@ function checkForm(event) {
 
     //redirect to other html
     window.location.href='registro.html';
-
-
-    
+   
     return seriesT, animeT, sitcomT;
 }
+
+
 
 

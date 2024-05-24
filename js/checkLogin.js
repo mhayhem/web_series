@@ -17,3 +17,4 @@ output.innerHTML = `
         <p>Serie animada: ${anime}</p>
         <p>Sitcom: ${sitcom}</p>
     `;
+
