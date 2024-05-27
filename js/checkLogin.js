@@ -7,7 +7,7 @@ getUserInfo();
 
 if (!checkUserInfo()) location='index.html';
 
-
+// display user info and chosen in registro.html
 
 output.innerHTML = `
         <p>Nombre: ${nick}</p>

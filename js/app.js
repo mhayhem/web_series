@@ -8,20 +8,17 @@ const email = document.getElementById('email');
 const age = document.getElementById('age');
 const empty = document.getElementById('empty');
 const noValue = document.getElementById('noValue');
-
-
-
-
 const series = document.getElementById('series');
 const anime = document.getElementById('anime');
 const sitcom = document.getElementById('sitcom');
 
-
-
-
 // event litsener
 
 data.addEventListener('submit', checkForm);
+
+// geolocation
+
+geolocationData();
 
 // check error in registro.html
 if (sessionStorage.getItem('empty') != null) {
@@ -59,21 +56,17 @@ function checkForm(event) {
 
     // catch text of options
 
-    
-
-
-
     let seriesT = series.options[series.selectedIndex].text;
     let animeT = anime.options[anime.selectedIndex].text;
     let sitcomT = sitcom.options[sitcom.selectedIndex].text;
 
-
-
     // send user info
-    userInfo(nick, email, age, seriesT, animeT, sitcomT);
+
+    userInfo(nick, email, age, seriesT, animeT, sitcomT, geolocationTxt);
     storageHistoric(nick, email, age, seriesT, animeT, sitcomT);
 
     //redirect to other html
+
     window.location.href='registro.html';
    
     return seriesT, animeT, sitcomT;

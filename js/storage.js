@@ -1,15 +1,20 @@
 // storage variables
-let seriesT;
-let animeT;
-let sitcomT;
 
-function userInfo (nick, email, age, seriesT, animeT, sitcomT) {
+var seriesT;
+var animeT;
+var sitcomT;
+var geolocationTxt;
+
+// functios
+
+function userInfo (nick, email, age, seriesT, animeT, sitcomT, geolocationTxt) {
     sessionStorage.setItem('nick', nick.value);
     sessionStorage.setItem('email', email.value);
     sessionStorage.setItem('edad', age.value);
     sessionStorage.setItem('series', seriesT);
     sessionStorage.setItem('anime', animeT);
     sessionStorage.setItem('sitcom', sitcomT);
+    sessionStorage.setItem('geolocationTxt', geolocationTxt);
 
 }
 
@@ -53,15 +58,15 @@ function storageHistoric (nick, email, age, seriesT, animeT, sitcomT) {
     }
     historic.push(userInfo);
     localStorage.setItem('historic', JSON.stringify(historic));
-    sum (historic);
+    return chosenCount (historic);
 }
 
-function sum (historic) {
+function chosenCount (historic) {
     let serieCounts = {};
     let animeCounts = {};
     let sitcomCounts = {};
 
-    historic.array.forEach(user => {
+    historic.forEach(user => {
         if (serieCounts[user.serie1]) {
             serieCounts[user.serie1]++;
         }
@@ -84,4 +89,18 @@ function sum (historic) {
         }
     });
 
+}
+
+function geolocationData () {
+    if (!navigator.geolocation) {
+            geolocationTxt='La geolocalización no es compatible con el navegador';
+    }
+    else {
+        navigator.geolocation.getCurrentPosition(
+        // succes
+            (position)=> {geolocationTxt='latitud: ' + position.coords.latitude + ', longitud: ' + position.coords.longitude},
+        // error
+        ()=> {geolocationTxt='No se ha podido encontrar la posición de equipo';}
+        );
+    }
 }
