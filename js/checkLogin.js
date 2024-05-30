@@ -1,3 +1,8 @@
+/**
+ * @author Daniel Grande <mhayhemdev@gmial.com>
+ * 
+ * @link https://github.com/mhayhem/web_series
+ */
 
 // catch userInfo
 

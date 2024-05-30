@@ -1,33 +1,30 @@
+/**
+ * @author Daniel Grande <mhayhemdev@gmial.com>
+ * 
+ * @link https://github.com/mhayhem/web_series
+ */
 
 
-// catch info 
+// variables 
 
-const data = document.getElementById('data');
-const nick = document.getElementById('nick');
-const email = document.getElementById('email');
-const age = document.getElementById('age');
-const empty = document.getElementById('empty');
-const noValue = document.getElementById('noValue');
-const series = document.getElementById('series');
-const anime = document.getElementById('anime');
-const sitcom = document.getElementById('sitcom');
+var data;
+var nick;
+var email;
+var age;
+var empty;
+var noValue;
+var series;
+var anime;
+var sitcom;
 
-// event litsener
-
-data.addEventListener('submit', checkForm);
-
-// geolocation
-
-geolocationData();
-
-// check error in registro.html
-if (sessionStorage.getItem('empty') != null) {
-    empty.innerText=sessionStorage.getItem('empty');
-    sessionStorage.removeItem('empty');
-}
 
 // functions
 
+/**
+ * Description check conditions
+ * @param {HTMLElement} event
+ * 
+ */
 function checkForm(event) {
     event.preventDefault();
     // validations
@@ -54,13 +51,13 @@ function checkForm(event) {
         }
     }
 
-    // catch text of options
+    // take text of options
 
     let seriesT = series.options[series.selectedIndex].text;
     let animeT = anime.options[anime.selectedIndex].text;
     let sitcomT = sitcom.options[sitcom.selectedIndex].text;
 
-    // send user info
+    // send user info to fucntions
 
     userInfo(nick, email, age, seriesT, animeT, sitcomT, geolocationTxt);
     storageHistoric(nick, email, age, seriesT, animeT, sitcomT);
@@ -72,6 +69,37 @@ function checkForm(event) {
     return seriesT, animeT, sitcomT;
 }
 
+/**
+ * Description
+ * 
+ * function to load and check of form
+ */
+function domLoaded() {
+    data = document.getElementById('data');
+    nick = document.getElementById('nick');
+    email = document.getElementById('email');
+    age = document.getElementById('age');
+    empty = document.getElementById('empty');
+    noValue = document.getElementById('noValue');
+    series = document.getElementById('series');
+    anime = document.getElementById('anime');
+    sitcom = document.getElementById('sitcom');
 
+    // check error in registro.html
+    if (sessionStorage.getItem('empty') != null) {
+        empty.innerText=sessionStorage.getItem('empty');
+        sessionStorage.removeItem('empty');
+    }
+
+    data.addEventListener('submit', checkForm);
+}
+
+// event litsener
+
+document.addEventListener('DOMContentLoaded', domLoaded)
+
+// geolocation
+
+geolocationData();
 
 

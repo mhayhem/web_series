@@ -1,12 +1,28 @@
-// storage variables
+/**
+ * @author Daniel Grande <mhayhemdev@gmial.com>
+ * 
+ * @link https://github.com/mhayhem/web_series
+ */
+
+// variables
 
 var seriesT;
 var animeT;
 var sitcomT;
 var geolocationTxt;
 
-// functios
+// functions
 
+/**
+ * Description take info from inputs
+ * @param {HTMLElement} nick
+ * @param {HTMLElement} email
+ * @param {HTMLElement} age
+ * @param {HTMLElement} seriesT
+ * @param {HTMLElement} animeT
+ * @param {HTMLElement} sitcomT
+ * @param {HTMLElement} geolocationTxt
+ */
 function userInfo (nick, email, age, seriesT, animeT, sitcomT, geolocationTxt) {
     sessionStorage.setItem('nick', nick.value);
     sessionStorage.setItem('email', email.value);
@@ -18,6 +34,9 @@ function userInfo (nick, email, age, seriesT, animeT, sitcomT, geolocationTxt) {
 
 }
 
+/**
+ * Description store data in sessionstore
+ */
 function getUserInfo() {
     nick = sessionStorage.getItem('nick');
     email = sessionStorage.getItem('email');
@@ -28,6 +47,9 @@ function getUserInfo() {
     
 }
 
+/**
+ * Description check that the nick is not null
+ */
 function checkUserInfo () {
         if (nick == null) {
             sessionStorage.setItem('empty', 'No se ha iniciado sesión');
@@ -36,7 +58,18 @@ function checkUserInfo () {
         return true
 }
 
-// local storage
+
+/**
+ * Description store data in localstorage
+ * 
+ * @param {string} nick
+ * @param {string} email
+ * @param {string} age
+ * @param {string} seriesT
+ * @param {string} animeT
+ * @param {string} sitcomT
+ * 
+ */
 
 function storageHistoric (nick, email, age, seriesT, animeT, sitcomT) {
     let historicUser = localStorage.getItem('historic');
@@ -61,6 +94,11 @@ function storageHistoric (nick, email, age, seriesT, animeT, sitcomT) {
     return chosenCount (historic);
 }
 
+/**
+ * Description
+ * @param {Array} historic
+ * 
+ */
 function chosenCount (historic) {
     let serieCounts = {};
     let animeCounts = {};
@@ -91,6 +129,10 @@ function chosenCount (historic) {
 
 }
 
+/**
+ * Description check geolocation
+ * 
+ */
 function geolocationData () {
     if (!navigator.geolocation) {
             geolocationTxt='La geolocalización no es compatible con el navegador';
@@ -100,7 +142,7 @@ function geolocationData () {
         // succes
             (position)=> {geolocationTxt='latitud: ' + position.coords.latitude + ', longitud: ' + position.coords.longitude},
         // error
-        ()=> {geolocationTxt='No se ha podido encontrar la posición de equipo';}
+        ()=> {geolocationTxt='No se ha podido encontrar la posición de equipo'}
         );
     }
 }
